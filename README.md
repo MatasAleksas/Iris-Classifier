@@ -42,5 +42,6 @@ How To Run:
 
 Notes:
 -
-- I used only logistic regression for simplicity
-- Might expand to use KNN, SVM, or Decision Tree
+- Expanded to also use KNN
+- In the future I might try to make the program run faster
+- The creation of the plot and training of the models take too long for my liking

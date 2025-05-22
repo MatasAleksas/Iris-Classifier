@@ -2,7 +2,7 @@
 Program that utilizes machine learning to classify different iris flowers.
 Classify iris flowers into 3 species: Setosa, Versicolor, Virginica.
 
-Algorithm Used: Logistic Regression.
+Algorithm Used: Logistic Regression, KNN.
 Evaluation: Accuracy score, confusion matrix, visualization.
 
 Author: Matas Aleksas
@@ -14,6 +14,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
@@ -46,14 +47,24 @@ x_scaled = scaler.fit_transform(x)
 # Getting a random split of the training and testing data between the actual data and the names of the flowers
 x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.2, random_state=42)
 
-# Creating a modeling and training it
-model = LogisticRegression()
-model.fit(x_train, y_train)
+# Creating the models and training it
+logistic = LogisticRegression()
+logistic.fit(x_train, y_train)
+
+knn = KNeighborsClassifier()
+knn.fit(x_train, y_train)
 
 # Testing the model with the testing data
-y_pred = model.predict(x_test)
+log_pred = logistic.predict(x_test)
+knn_pred = knn.predict(x_test)
 
 # Outputting the results of the model
-print("Accuracy: \n" + str(accuracy_score(y_test, y_pred)))
-print("\nClassification Report: \n" + str(classification_report(y_test, y_pred)))
-print("\nConfusion Matrix: \n" + str(confusion_matrix(y_test, y_pred)))
+print("Logistic Regression Results: \n")
+print("Accuracy: \n" + str(accuracy_score(y_test, log_pred)))
+print("\nClassification Report: \n" + str(classification_report(y_test, log_pred)))
+print("\nConfusion Matrix: \n" + str(confusion_matrix(y_test, log_pred)) + "\n")
+
+print("KNN Results: \n")
+print("Accuracy: \n" + str(accuracy_score(y_test, knn_pred)))
+print("\nClassification Report: \n" + str(classification_report(y_test, knn_pred)))
+print("\nConfusion Matrix: \n" + str(confusion_matrix(y_test, knn_pred)) + "\n")
