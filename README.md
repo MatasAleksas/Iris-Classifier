@@ -43,5 +43,5 @@ How To Run:
 Notes:
 -
 - Expanded to also use KNN
-- In the future I might try to make the program run faster
-- The creation of the plot and training of the models take too long for my liking
+- I made some of the bits of code into functions so we can call what we want
+- Saves some time, like putting the pair plot into its own function
